@@ -4,7 +4,10 @@ import { useState, useRef, useEffect } from "react"
 import { Send, Bot, User, Loader2, X } from "lucide-react"
 import { io } from "socket.io-client";
 
-const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL);
+const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL, {
+    withCredentials: true, // Important for CORS
+    transports: ["websocket"],
+});
 
 export default function ChatBot() {
     const [isOpen, setIsOpen] = useState(false)
